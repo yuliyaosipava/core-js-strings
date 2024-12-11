@@ -19,8 +19,11 @@
  *   getStringLength(null) => 0
  *   getStringLength(undefined) => 0
  */
-function getStringLength(/* value */) {
-  throw new Error('Not implemented');
+function getStringLength(value) {
+  if (value == null || typeof value !== 'string') {
+    return 0;
+  }
+  return value.length;
 }
 
 /**
@@ -37,9 +40,10 @@ function getStringLength(/* value */) {
  *   isString('test') => true
  *   isString(new String('test')) => true
  */
-function isString(/* value */) {
-  throw new Error('Not implemented');
+function isString(value) {
+  return typeof value === 'string' || value instanceof String;
 }
+module.exports = isString;
 
 /**
  * Returns the result of concatenation of two strings.
@@ -53,9 +57,11 @@ function isString(/* value */) {
  *   concatenateStrings('aa', '') => 'aa'.
  *   concatenateStrings('', 'bb') => 'bb'
  */
-function concatenateStrings(/* value1, value2 */) {
-  throw new Error('Not implemented');
+function concatenateStrings(value1, value2) {
+  return String(value1) + String(value2);
 }
+module.exports = concatenateStrings;
+
 
 /**
  * Returns the first character of the given string.
@@ -68,9 +74,14 @@ function concatenateStrings(/* value1, value2 */) {
  *   getFirstChar('cat') => 'c'
  *   getFirstChar('') => ''
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(value) {
+  if (typeof value === 'string' && value.length > 0) {
+    return value.charAt(0);
+  }
+  return '';
 }
+module.exports = getFirstChar;
+
 
 /**
  * Removes leading and trailing whitespace characters from the string.
@@ -83,9 +94,13 @@ function getFirstChar(/* value */) {
  *   removeLeadingAndTrailingWhitespaces('cat ') => 'cat'
  *   removeLeadingAndTrailingWhitespaces('\t\t\tHello, World! ') => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(value) {
+  if (typeof value === 'string') {
+    return value.trim();
+  }
+  return value;
 }
+module.exports = removeLeadingAndTrailingWhitespaces;
 
 /**
  * Removes only leading whitespace characters from the string.
