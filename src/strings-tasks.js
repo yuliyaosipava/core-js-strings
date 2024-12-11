@@ -75,10 +75,7 @@ module.exports = concatenateStrings;
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  if (typeof value === 'string' && value.length > 0) {
-    return value.charAt(0);
-  }
-  return '';
+  return value.charAt(0);
 }
 module.exports = getFirstChar;
 
@@ -95,10 +92,10 @@ module.exports = getFirstChar;
  *   removeLeadingAndTrailingWhitespaces('\t\t\tHello, World! ') => 'Hello, World!'
  */
 function removeLeadingAndTrailingWhitespaces(value) {
-  if (typeof value === 'string') {
-    return value.trim();
-  }
-  return value;
+  return value.trim();
+}
+module.exports = removeLeadingAndTrailingWhitespaces;
+
 }
 module.exports = removeLeadingAndTrailingWhitespaces;
 
