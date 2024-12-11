@@ -20,10 +20,7 @@
  *   getStringLength(undefined) => 0
  */
 function getStringLength(value) {
-  if (value == null || typeof value !== 'string') {
-    return 0;
-  }
-  return value.length;
+  return value ? value.length : 0;
 }
 
 /**
@@ -58,7 +55,7 @@ module.exports = isString;
  *   concatenateStrings('', 'bb') => 'bb'
  */
 function concatenateStrings(value1, value2) {
-  return String(value1) + String(value2);
+  return value1.concat(value2);
 }
 module.exports = concatenateStrings;
 
@@ -96,9 +93,6 @@ function removeLeadingAndTrailingWhitespaces(value) {
 }
 module.exports = removeLeadingAndTrailingWhitespaces;
 
-}
-module.exports = removeLeadingAndTrailingWhitespaces;
-
 /**
  * Removes only leading whitespace characters from the string.
  *
@@ -111,7 +105,7 @@ module.exports = removeLeadingAndTrailingWhitespaces;
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
 function removeLeadingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+  return value.trimStart();
 }
 
 /**
@@ -126,7 +120,7 @@ function removeLeadingWhitespaces(/* value */) {
  *   removeTrailingWhitespaces('\t\t\tHello, World! ') => '\t\t\tHello, World!'
  */
 function removeTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+  return value.trimEnd();
 }
 
 /**
@@ -143,7 +137,7 @@ function removeTrailingWhitespaces(/* value */) {
  *   repeatString('abc', -2) => ''
  */
 function repeatString(/* str, times */) {
-  throw new Error('Not implemented');
+  return times > 0 ? str.repeat(times) : '';
 }
 
 /**
@@ -159,7 +153,10 @@ function repeatString(/* str, times */) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+  const index = str.indexOf(value);
+  return index !== -1
+    ? `${str.slice(0, index)}${str.slice(index + value.length)}`
+    : str;
 }
 
 /**
@@ -175,7 +172,10 @@ function removeFirstOccurrences(/* str, value */) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(/* str, value */) {
-  throw new Error('Not implemented');
+  const index = str.lastIndexOf(value);
+  return index !== -1
+    ? `${str.slice(0, index)}${str.slice(index + value.length)}`
+    : str;
 }
 
 /**
@@ -191,7 +191,13 @@ function removeLastOccurrences(/* str, value */) {
  *   sumOfCodes() => 0
  */
 function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+  let result = 0;
+  if (str) {
+    for (let i = 0; i < str.length; i += 1) {
+      result += str.charCodeAt(i);
+    }
+  }
+  return result;
 }
 
 /**
@@ -206,7 +212,7 @@ function sumOfCodes(/* str */) {
  *   startsWith('Hello World', 'Hello') => true
  */
 function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+  return str.startsWith(substr);
 }
 
 /**
@@ -221,7 +227,7 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'Hello') => false
  */
 function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+  return str.endsWith(substr);
 }
 
 /**
@@ -238,7 +244,9 @@ function endsWith(/* str, substr */) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+  const min = String(minutes).padStart(2, '0');
+  const sec = String(seconds).padStart(2, '0');
+  return `${min}:${sec}`;
 }
 
 /**
